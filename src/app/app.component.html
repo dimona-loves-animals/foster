@@ -1,0 +1,281 @@
+<header>
+  <nav></nav>
+</header>
+
+<div class="container" style="margin: 25px auto 35px;">
+  <div class="text-center">
+    <img alt="Dimona Loves Animals" src="assets/logo.png" width="129" height="190"/>
+    <h1>הרשמה לבית אומנה</h1>
+  </div>
+
+  <hr>
+
+  <div>
+    <p>שלום אנשים טובים,</p>
+
+    <p>
+      אם נכנסתם לפה סימן שיש לכם לב רחב ואתם מוכנים לסייע לבעלי החיים במצוקה.
+      אנו מרכזים רשימת "מלאכים לשעת חירום" - שיעזרו לנו להציל כלבים וחתולים בדימונה.
+    </p>
+
+    <p>
+      כמלאכים לשעת חירום תפקידכם יהיה לאסוף את הבעלי חיים עליהם נקבל דיווח -
+      ולארח אותם עד שנמצא להם פתרון קבוע.
+    </p>
+
+    <p>
+      תודה על הרצון לסייע!!
+    </p>
+
+  </div>
+
+  <hr>
+
+  <form id="example-form" action="#" role="form" (ngSubmit)="onSubmit()">
+    <div>
+
+      <h3>למי אתם מעוניינים לעשות אומנה?</h3>
+      <section>
+
+        <div>
+          <img style="max-width: 100%;" alt="image of dog and a cat"
+               src="http://freepngimages.com/wp-content/uploads/2014/04/dog_and_cat_1_2.png">
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="foster_dog" value="dog">
+          <label class="form-check-label" for="foster_dog">כלב</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="foster_cat" value="cat">
+          <label class="form-check-label" for="foster_cat">חתול</label>
+        </div>
+
+      </section>
+
+      <hr>
+
+      <h3>פרטים על הבית</h3>
+      <section>
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="control-label" for="textarea">הבית</label>
+          <textarea class="form-control" id="textarea" name="textarea">אנא פרטו קצת על הבית. האם יש לכם עוד בעלי חיים בבית? כלבים? חתולים? כמה? באיזה גיל? איך הם מתנהגים?
+          </textarea>
+        </div>
+
+        <!-- Multiple Checkboxes -->
+        <div class="form-group">
+          <label class="control-label" for="Home">איזה תנאים אתם יכולים לתת?</label>
+          <div class="checkbox">
+            <label for="Home-0">
+              <input type="checkbox" name="Home" id="Home-0" value="1">
+              מגורים בבית
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="Home-1">
+              <input type="checkbox" name="Home" id="Home-1" value="2">
+              יש גינה
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="Home-2">
+              <input type="checkbox" name="Home" id="Home-2" value="3">
+              יכולים לשלם על אוכל
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="Home-3">
+              <input type="checkbox" name="Home" id="Home-3" value="4">
+              יכולים לשלם על תרופות וטיפולים
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="Home-4">
+              <input type="checkbox" name="Home" id="Home-4" value="5">
+              יכולים לטפל בבעיות התנהגות (לא בעלי חיים אגרסיביים)
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="Home-5">
+              <input type="checkbox" name="Home" id="Home-5" value="6">
+              יכולים לטפל בבעלי חיים אגרסיבים
+            </label>
+          </div>
+        </div>
+
+      </section>
+
+      <h3>פרטי אומנה</h3>
+      <section>
+        <!-- Multiple Checkboxes -->
+        <div class="form-group">
+          <label class="control-label" for="fosterage">לאיזה גיל אתם מעוניינים לתת אומנה?</label>
+          <div class="">
+            <div class="checkbox">
+              <label for="fosterage-0">
+                <input type="checkbox" name="fosterage" id="fosterage-0"
+                       value="1">
+                גורים
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="fosterage-1">
+                <input type="checkbox" name="fosterage" id="fosterage-1"
+                       value="2">
+                צעירים
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="fosterage-2">
+                <input type="checkbox" name="fosterage" id="fosterage-2"
+                       value="3">
+                בוגרים
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="fosterage-3">
+                <input type="checkbox" name="fosterage" id="fosterage-3"
+                       value="4">
+                מבוגרים
+              </label>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="control-label" for="moreinfo">מידע נוסף</label>
+          <div class="">
+            <textarea class="form-control" id="moreinfo" name="moreinfo">אנא שתפו אותנו בכל דבר שאתם חושבים ששווה אזכור</textarea>
+          </div>
+        </div>
+
+
+      </section>
+      <h3>הפרטים שלכם</h3>
+      <section>
+        <div class="col-md-6">
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="yourname">שם מלא</label>
+            <input id="yourname" name="yourname" type="text"
+                   placeholder="מהו השם שלכם"
+                   class="form-control input-md">
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="youraddress">כתובת</label>
+            <input id="youraddress" name="youraddress" type="text"
+                   placeholder="כתובת המגורים שלכם"
+                   class="form-control input-md">
+            <span class="help-block">כתובת מלאה למקום שבו תעשו את האומנה</span>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="yourphone">טלפון</label>
+            <input id="yourphone" name="yourphone" type="tel"
+                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                   placeholder="0xx-xxx-xxxx" class="form-control input-md">
+            <span class="help-block">אנא ספקו מספר טלפון דרכו נוכל ליצור אתכם קשר</span>
+          </div>
+
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="night_call" value="night">
+              <label class="form-check-label" for="night_call">אתם יכולים להתקשר אלי אחרי 22:00 אם יש צורך באומנה.</label>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="youremail">כתובת דואר אלקטרוני</label>
+            <input id="youremail" name="youremail" type="text"
+                   placeholder="yourname@example.com"
+                   class="form-control input-md">
+            <span class="help-block">מהי הכתובת דואר אלקטרוני שלכם?</span>
+          </div>
+        </div>
+      </section>
+
+      <h3>סיום</h3>
+      <section>
+
+        <!-- Multiple Checkboxes -->
+        <div class="form-group">
+          <label class="control-label" for="agreement">הסכם</label>
+          <div class="">
+            <div class="checkbox">
+              <label for="agreement-0">
+                <input type="checkbox" name="agreement" id="agreement-0"
+                       value="1">
+                אני מודע/ת לכך שהאומנה היא ללא מגבלת זמן
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="agreement-1">
+                <input type="checkbox" name="agreement" id="agreement-1"
+                       value="2">
+                אני מודע/ת לכך שאני לא אוכל למסור את האומנה ללא אישור דימונה אוהבת חיות
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="agreement-2">
+                <input type="checkbox" name="agreement" id="agreement-2"
+                       value="3">
+                אני מודע/ת לכך שאני אצטרך לשלם על כל הצרכים של האומנה אלא אם דימונה אוהבת חיות תשתתף
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="agreement-3">
+                <input type="checkbox" name="agreement" id="agreement-3"
+                       value="4">
+                אני מודע/ת לכך שאני לא יכול/ה לסיים את האומנה ללא הודעה מראש של לפחות שבוע לדימונה אוהבת חיות
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="agreement-4">
+                <input type="checkbox" name="agreement" id="agreement-4"
+                       value="5">
+                אני מודע/ת לכך שאני אצטרף לקחת את האומנה לכל מקום שנדרש בעצמי
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="agreement-5">
+                <input type="checkbox" name="agreement" id="agreement-5"
+                       value="6">
+                אני מודע/ת לכך שאני אצטרך לספק תמונות של האומנה לדימונה אוהבת חיות
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="agreement-6">
+                <input type="checkbox" name="agreement" id="agreement-6"
+                       value="7">
+                אני מודע/ת לכך שאני אצטרך להביא את האומנה לימי אימוץ כנדרש
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="acceptTerms" value="night">
+            <label class="form-check-label" for="acceptTerms">אני מאשר/ת את התנאים</label>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <button class="btn btn-primary" type="submit">שליחת הטופס</button>
+
+  </form>
+</div>
+
+<footer></footer>
