@@ -19,6 +19,7 @@ export class AppComponent {
     })]),
     foster_at_home: [false],
     home_with_garden: [false],
+    have_car: [false],
     can_pay_food: [false],
     can_pay_medicine: [false],
     can_handle_sick: [false],
@@ -43,6 +44,7 @@ export class AppComponent {
 
   foster_at_home = this.fosterForm.controls['foster_at_home'];
   home_with_garden = this.fosterForm.controls['home_with_garden'];
+  have_car = this.fosterForm.controls['have_car'];
   can_pay_food = this.fosterForm.controls['can_pay_food'];
   can_pay_medicine = this.fosterForm.controls['can_pay_medicine'];
   can_handle_sick = this.fosterForm.controls['can_handle_sick'];
