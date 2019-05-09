@@ -4,8 +4,10 @@
 
 <div class="container" style="margin: 25px auto 35px;">
   <div class="text-center">
-    <img alt="Dimona Loves Animals" src="assets/logo.png" width="129" height="190"/>
-    <h1>הרשמה לבית אומנה</h1>
+    <img alt="Dimona Loves Animals" src="assets/logo.png" width="129"
+         height="190"/>
+    <h1>מלאכים לשעת חירום</h1>
+    <h2>הרשמה לבית אומנה</h2>
   </div>
 
   <hr>
@@ -15,7 +17,8 @@
 
     <p>
       אם נכנסתם לפה סימן שיש לכם לב רחב ואתם מוכנים לסייע לבעלי החיים במצוקה.
-      אנו מרכזים רשימת "מלאכים לשעת חירום" - שיעזרו לנו להציל כלבים וחתולים בדימונה.
+      אנו מרכזים רשימת "מלאכים לשעת חירום" - שיעזרו לנו להציל כלבים וחתולים
+      בדימונה.
     </p>
 
     <p>
@@ -31,7 +34,9 @@
 
   <hr>
 
-  <form id="example-form" action="#" role="form" (ngSubmit)="onSubmit()">
+  <form id="example-form" action="#" role="form" (ngSubmit)="onSubmit()"
+        [formGroup]="fosterForm"
+        [ngClass]="{'was-validated': fosterForm.dirty}">
     <div>
 
       <h3>למי אתם מעוניינים לעשות אומנה?</h3>
@@ -42,13 +47,46 @@
                src="http://freepngimages.com/wp-content/uploads/2014/04/dog_and_cat_1_2.png">
         </div>
 
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="foster_dog" value="dog">
-          <label class="form-check-label" for="foster_dog">כלב</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="foster_cat" value="cat">
-          <label class="form-check-label" for="foster_cat">חתול</label>
+        <div class="form-group">
+          <!-- dogs -->
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="foster_puppy"
+                   type="checkbox" id="foster_puppy"
+                   value="foster_puppy">
+            <label class="form-check-label" for="foster_puppy">גור כלבים</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="foster_dog"
+                   type="checkbox" id="foster_dog"
+                   value="foster_dog">
+            <label class="form-check-label" for="foster_dog">כלב</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="foster_senior_dog"
+                   type="checkbox" id="foster_senior_dog"
+                   value="foster_senior_dog">
+            <label class="form-check-label" for="foster_dog">כלב מבוגר</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="foster_kittens" type="checkbox"
+                   id="foster_kittens"
+                   value="cat">
+            <label class="form-check-label" for="foster_kittens">חתלתולים</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="foster_cat" type="checkbox"
+                   id="foster_cat"
+                   value="cat">
+            <label class="form-check-label" for="foster_cat">חתול</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="senior_cat" type="checkbox"
+                   id="senior_cat"
+                   value="cat">
+            <label class="form-check-label" for="senior_cat">חתול מבוגר</label>
+          </div>
+
         </div>
 
       </section>
@@ -60,213 +98,449 @@
         <!-- Textarea -->
         <div class="form-group">
           <label class="control-label" for="textarea">הבית</label>
-          <textarea class="form-control" id="textarea" name="textarea">אנא פרטו קצת על הבית. האם יש לכם עוד בעלי חיים בבית? כלבים? חתולים? כמה? באיזה גיל? איך הם מתנהגים?
-          </textarea>
+          <textarea class="form-control" id="textarea" name="textarea"
+                    placeholder="אנא פרטו קצת על הבית. האם יש לכם עוד בעלי חיים בבית? כלבים? חתולים? כמה? באיזה גיל? איך הם מתנהגים?"></textarea>
         </div>
 
-        <!-- Multiple Checkboxes -->
+        <label class="control-label">איזה תנאים אתם יכולים לתת?</label>
+
         <div class="form-group">
-          <label class="control-label" for="Home">איזה תנאים אתם יכולים לתת?</label>
-          <div class="checkbox">
-            <label for="Home-0">
-              <input type="checkbox" name="Home" id="Home-0" value="1">
+
+          <!-- home stay -->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="foster_at_home"
+              formControlName="foster_at_home"
+            >
+            <label
+              class="form-check-label"
+              for="foster_at_home"
+            >
               מגורים בבית
             </label>
           </div>
-          <div class="checkbox">
-            <label for="Home-1">
-              <input type="checkbox" name="Home" id="Home-1" value="2">
+
+          <!-- have garden -->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="home_with_garden"
+              formControlName="home_with_garden"
+            >
+            <label
+              class="form-check-label"
+              for="home_with_garden"
+            >
               יש גינה
             </label>
           </div>
-          <div class="checkbox">
-            <label for="Home-2">
-              <input type="checkbox" name="Home" id="Home-2" value="3">
+
+          <!-- can pay food -->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="can_pay_food"
+              formControlName="can_pay_food"
+            >
+            <label
+              class="form-check-label"
+              for="can_pay_food"
+            >
               יכולים לשלם על אוכל
             </label>
           </div>
-          <div class="checkbox">
-            <label for="Home-3">
-              <input type="checkbox" name="Home" id="Home-3" value="4">
+
+          <!-- can pay medicine -->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="can_pay_medicine"
+              formControlName="can_pay_medicine"
+            >
+            <label
+              class="form-check-label"
+              for="can_pay_medicine"
+            >
               יכולים לשלם על תרופות וטיפולים
             </label>
           </div>
-          <div class="checkbox">
-            <label for="Home-4">
-              <input type="checkbox" name="Home" id="Home-4" value="5">
+
+          <!-- can handle bad behaviour -->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="can_handle_sick"
+              formControlName="can_handle_sick"
+            >
+            <label
+              class="form-check-label"
+              for="can_handle_sick"
+            >
+              יכולים לטפל בבע"ח פצועים או חולים
+            </label>
+          </div>
+
+          <!-- can handle bad behaviour -->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="can_handle_bad_behaviour"
+              formControlName="can_handle_bad_behaviour"
+            >
+            <label
+              class="form-check-label"
+              for="can_handle_bad_behaviour"
+            >
               יכולים לטפל בבעיות התנהגות (לא בעלי חיים אגרסיביים)
             </label>
           </div>
-          <div class="checkbox">
-            <label for="Home-5">
-              <input type="checkbox" name="Home" id="Home-5" value="6">
+
+
+          <!-- can handle aggressive -->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="can_handle_aggressive"
+              formControlName="can_handle_aggressive"
+            >
+            <label
+              class="form-check-label"
+              for="can_handle_aggressive"
+            >
               יכולים לטפל בבעלי חיים אגרסיבים
             </label>
           </div>
+
         </div>
 
       </section>
 
-      <h3>פרטי אומנה</h3>
-      <section>
-        <!-- Multiple Checkboxes -->
-        <div class="form-group">
-          <label class="control-label" for="fosterage">לאיזה גיל אתם מעוניינים לתת אומנה?</label>
-          <div class="">
-            <div class="checkbox">
-              <label for="fosterage-0">
-                <input type="checkbox" name="fosterage" id="fosterage-0"
-                       value="1">
-                גורים
-              </label>
-            </div>
-            <div class="checkbox">
-              <label for="fosterage-1">
-                <input type="checkbox" name="fosterage" id="fosterage-1"
-                       value="2">
-                צעירים
-              </label>
-            </div>
-            <div class="checkbox">
-              <label for="fosterage-2">
-                <input type="checkbox" name="fosterage" id="fosterage-2"
-                       value="3">
-                בוגרים
-              </label>
-            </div>
-            <div class="checkbox">
-              <label for="fosterage-3">
-                <input type="checkbox" name="fosterage" id="fosterage-3"
-                       value="4">
-                מבוגרים
-              </label>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="control-label" for="moreinfo">מידע נוסף</label>
-          <div class="">
-            <textarea class="form-control" id="moreinfo" name="moreinfo">אנא שתפו אותנו בכל דבר שאתם חושבים ששווה אזכור</textarea>
-          </div>
-        </div>
-
-
-      </section>
       <h3>הפרטים שלכם</h3>
       <section>
         <div class="col-md-6">
           <!-- Text input-->
           <div class="form-group">
-            <label class="control-label" for="yourname">שם מלא</label>
-            <input id="yourname" name="yourname" type="text"
-                   placeholder="מהו השם שלכם"
-                   class="form-control input-md">
+            <label class="control-label" for="full_name">שם מלא</label>
+            <app-required></app-required>
+            <input id="full_name" formControlName="full_name" type="text"
+                   placeholder="מהו השם המלא שלכם"
+                   class="form-control input-md"
+                   required=""
+                   [ngClass]="{'is-invalid': full_name.invalid && full_name.touched, 'is-valid': full_name.valid}"
+            >
+            <div class="invalid-feedback">
+              אנא הכניסו את שמכם המלא
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="dob">תאריך לידה</label>
+            <app-required></app-required>
+            <input id="dob" formControlName="dob" type="date"
+                   placeholder="מהו תאריך הלידה שלכם"
+                   class="form-control input-md"
+                   required=""
+                   [ngClass]="{'is-invalid': dob.invalid && dob.touched, 'is-valid': dob.valid}"
+            >
+            <div class="invalid-feedback">
+              אנא הכניסו את תאריך הלידה שלכם
+            </div>
           </div>
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="control-label" for="youraddress">כתובת</label>
-            <input id="youraddress" name="youraddress" type="text"
+            <label class="control-label" for="address">כתובת</label>
+            <app-required></app-required>
+            <input id="address" formControlName="address" type="text"
                    placeholder="כתובת המגורים שלכם"
-                   class="form-control input-md">
-            <span class="help-block">כתובת מלאה למקום שבו תעשו את האומנה</span>
+                   class="form-control input-md"
+                   required=""
+                   [ngClass]="{'is-invalid': address.invalid && address.touched, 'is-valid': address.valid}"
+            >
+            <small class="form-text text-muted">כתובת מלאה למקום שבו תעשו את
+              האומנה
+            </small>
+            <div class="invalid-feedback">
+              אנא הכניסו את הכתובת המלאה שלכם
+            </div>
           </div>
 
         </div>
         <div class="col-md-6">
+
+          <div class="form-group">
+            <label class="control-label" for="email">כתובת דואר אלקטרוני</label>
+            <app-required></app-required>
+            <input id="email" formControlName="email" type="text"
+                   placeholder="yourname@example.com"
+                   class="form-control input-md"
+                   required=""
+                   [ngClass]="{'is-invalid': email.invalid && email.touched, 'is-valid': email.valid}"
+            >
+            <small class="form-text text-muted">מהי הכתובת דואר אלקטרוני שלכם?
+            </small>
+            <div class="invalid-feedback">
+              אנא הכניסו את כתובת הדואר האלקטרוני שלכם
+            </div>
+          </div>
+
           <!-- Text input-->
           <div class="form-group">
-            <label class="control-label" for="yourphone">טלפון</label>
-            <input id="yourphone" name="yourphone" type="tel"
-                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                   placeholder="0xx-xxx-xxxx" class="form-control input-md">
-            <span class="help-block">אנא ספקו מספר טלפון דרכו נוכל ליצור אתכם קשר</span>
+            <label class="control-label" for="phone">טלפון</label>
+            <app-required></app-required>
+            <input id="phone" formControlName="phone" type="tel"
+                   placeholder="מספר הטלפון שלכם ליצירת קשר"
+                   class="form-control input-md"
+                   required=""
+                   [ngClass]="{'is-invalid': phone.invalid && phone.touched, 'is-valid': phone.valid}"
+            >
+            <small class="form-text text-muted">אנא ספקו מספר טלפון דרכו נוכל
+              ליצור אתכם קשר
+            </small>
+            <div class="invalid-feedback">
+              אנא הכניסו את מספר הטלפון שלכם
+            </div>
           </div>
 
           <div class="form-group">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="night_call" value="night">
-              <label class="form-check-label" for="night_call">אתם יכולים להתקשר אלי אחרי 22:00 אם יש צורך באומנה.</label>
+              <input class="form-check-input" type="checkbox" id="call_at_night"
+                     formControlName="call_at_night" value="night">
+              <label class="form-check-label" for="call_at_night">אתם יכולים
+                להתקשר אלי אחרי 22:00 אם יש צורך באומנה.</label>
             </div>
           </div>
+        </div>
 
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="control-label" for="youremail">כתובת דואר אלקטרוני</label>
-            <input id="youremail" name="youremail" type="text"
-                   placeholder="yourname@example.com"
-                   class="form-control input-md">
-            <span class="help-block">מהי הכתובת דואר אלקטרוני שלכם?</span>
+        <div class="form-group">
+          <label class="control-label" for="comment">מידע נוסף</label>
+          <div class="">
+            <textarea class="form-control" id="comment" name="comment"
+                      formControlName="comment">אנא שתפו אותנו בכל דבר שאתם חושבים ששווה אזכור</textarea>
           </div>
         </div>
+
       </section>
 
       <h3>סיום</h3>
+
       <section>
 
-        <!-- Multiple Checkboxes -->
-        <div class="form-group">
-          <label class="control-label" for="agreement">הסכם</label>
-          <div class="">
-            <div class="checkbox">
-              <label for="agreement-0">
-                <input type="checkbox" name="agreement" id="agreement-0"
-                       value="1">
-                אני מודע/ת לכך שהאומנה היא ללא מגבלת זמן
-              </label>
-            </div>
-            <div class="checkbox">
-              <label for="agreement-1">
-                <input type="checkbox" name="agreement" id="agreement-1"
-                       value="2">
-                אני מודע/ת לכך שאני לא אוכל למסור את האומנה ללא אישור דימונה אוהבת חיות
-              </label>
-            </div>
-            <div class="checkbox">
-              <label for="agreement-2">
-                <input type="checkbox" name="agreement" id="agreement-2"
-                       value="3">
-                אני מודע/ת לכך שאני אצטרך לשלם על כל הצרכים של האומנה אלא אם דימונה אוהבת חיות תשתתף
-              </label>
-            </div>
-            <div class="checkbox">
-              <label for="agreement-3">
-                <input type="checkbox" name="agreement" id="agreement-3"
-                       value="4">
-                אני מודע/ת לכך שאני לא יכול/ה לסיים את האומנה ללא הודעה מראש של לפחות שבוע לדימונה אוהבת חיות
-              </label>
-            </div>
-            <div class="checkbox">
-              <label for="agreement-4">
-                <input type="checkbox" name="agreement" id="agreement-4"
-                       value="5">
-                אני מודע/ת לכך שאני אצטרף לקחת את האומנה לכל מקום שנדרש בעצמי
-              </label>
-            </div>
-            <div class="checkbox">
-              <label for="agreement-5">
-                <input type="checkbox" name="agreement" id="agreement-5"
-                       value="6">
-                אני מודע/ת לכך שאני אצטרך לספק תמונות של האומנה לדימונה אוהבת חיות
-              </label>
-            </div>
-            <div class="checkbox">
-              <label for="agreement-6">
-                <input type="checkbox" name="agreement" id="agreement-6"
-                       value="7">
-                אני מודע/ת לכך שאני אצטרך להביא את האומנה לימי אימוץ כנדרש
-              </label>
-            </div>
+        <!-- no time limit -->
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="agree_to_no_time_limit"
+            formControlName="agree_to_no_time_limit"
+            required=""
+            [ngClass]="{
+                'is-invalid': agree_to_no_time_limit.invalid
+                && agree_to_no_time_limit.touched,
+                'is-valid': agree_to_no_time_limit.valid
+              }"
+          >
+          <label
+            class="form-check-label"
+            for="agree_to_no_time_limit"
+          >
+            אני מודע/ת לכך שהאומנה היא ללא מגבלת זמן
+          </label>
+          <div class="invalid-feedback">
+            חובה עליכם לאשר את התנאי הזה
+          </div>
+        </div>
+
+        <!-- no transfer -->
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="agree_to_no_transfer"
+            formControlName="agree_to_no_transfer"
+            required=""
+            [ngClass]="{
+                'is-invalid': agree_to_no_transfer.invalid
+                && agree_to_no_transfer.touched,
+                'is-valid': agree_to_no_transfer.valid
+              }"
+          >
+          <label
+            class="form-check-label"
+            for="agree_to_no_transfer"
+          >
+            אני מודע/ת לכך שאני לא אוכל למסור את האומנה ללא אישור דימונה
+            אוהבת חיות
+          </label>
+          <div class="invalid-feedback">
+            חובה עליכם לאשר את התנאי הזה
+          </div>
+        </div>
+
+        <!-- pay all -->
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="agree_to_pay"
+            formControlName="agree_to_pay"
+            required=""
+            [ngClass]="{
+                'is-invalid': agree_to_pay.invalid
+                && agree_to_pay.touched,
+                'is-valid': agree_to_pay.valid
+              }"
+          >
+          <label
+            class="form-check-label"
+            for="agree_to_pay"
+          >
+            אני מודע/ת לכך שאני אצטרך לשלם על כל הצרכים של האומנה אלא אם
+            דימונה אוהבת חיות תשתתף
+          </label>
+          <div class="invalid-feedback">
+            חובה עליכם לאשר את התנאי הזה
+          </div>
+        </div>
+
+        <!-- at least week -->
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="agree_to_week"
+            formControlName="agree_to_week"
+            required=""
+            [ngClass]="{
+                'is-invalid': agree_to_week.invalid
+                && agree_to_week.touched,
+                'is-valid': agree_to_week.valid
+              }"
+          >
+          <label
+            class="form-check-label"
+            for="agree_to_week"
+          >
+            אני מודע/ת לכך שאני לא יכול/ה לסיים את האומנה ללא הודעה מראש של
+            לפחות שבוע לדימונה אוהבת חיות
+          </label>
+          <div class="invalid-feedback">
+            חובה עליכם לאשר את התנאי הזה
+          </div>
+        </div>
+
+        <!-- take anywhere -->
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="agree_to_take"
+            formControlName="agree_to_take"
+            required=""
+            [ngClass]="{
+                'is-invalid': agree_to_take.invalid
+                && agree_to_take.touched,
+                'is-valid': agree_to_take.valid
+              }"
+          >
+          <label
+            class="form-check-label"
+            for="agree_to_take"
+          >
+            אני מודע/ת לכך שאני אצטרף לקחת את האומנה לכל מקום שנדרש בעצמי
+          </label>
+          <div class="invalid-feedback">
+            חובה עליכם לאשר את התנאי הזה
+          </div>
+        </div>
+
+        <!-- take photos -->
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="agree_to_photo"
+            formControlName="agree_to_photo"
+            required=""
+            [ngClass]="{
+                'is-invalid': agree_to_photo.invalid
+                && agree_to_photo.touched,
+                'is-valid': agree_to_photo.valid
+              }"
+          >
+          <label
+            class="form-check-label"
+            for="agree_to_photo"
+          >
+            אני מודע/ת לכך שאני אצטרך לספק תמונות של האומנה לדימונה אוהבת
+            חיות
+          </label>
+          <div class="invalid-feedback">
+            חובה עליכם לאשר את התנאי הזה
+          </div>
+        </div>
+
+        <!-- bring to adopt days -->
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="agree_to_bring"
+            formControlName="agree_to_bring"
+            required=""
+            [ngClass]="{
+                'is-invalid': agree_to_bring.invalid
+                && agree_to_bring.touched,
+                'is-valid': agree_to_bring.valid
+              }"
+          >
+          <label
+            class="form-check-label"
+            for="agree_to_bring"
+          >
+            אני מודע/ת לכך שאני אצטרך להביא את האומנה לימי אימוץ כנדרש
+          </label>
+          <div class="invalid-feedback">
+            חובה עליכם לאשר את התנאי הזה
           </div>
         </div>
 
         <div class="form-group">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="acceptTerms" value="night">
-            <label class="form-check-label" for="acceptTerms">אני מאשר/ת את התנאים</label>
+            <input
+              class="form-check-input"
+              formControlName="accept_terms"
+              type="checkbox"
+              id="accept_terms"
+              value="accept_terms"
+              required=""
+              [ngClass]="{
+                'is-invalid': accept_terms.invalid
+                && accept_terms.touched,
+                'is-valid': accept_terms.valid
+              }"
+            >
+            <label class="form-check-label" for="accept_terms">אני מאשר/ת את
+              התנאים</label>
+          </div>
+          <div class="invalid-feedback">
+            חובה עליכם לאשר את התנאים
           </div>
         </div>
 

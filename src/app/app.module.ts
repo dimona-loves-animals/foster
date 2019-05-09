@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { RequiredComponent } from './required/required.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RequiredComponent
   ],
   imports: [
     BrowserModule,

@@ -319,6 +319,11 @@
     semver "5.6.0"
     semver-intersect "1.4.0"
 
+"@types/google-libphonenumber@^7.4.17":
+  version "7.4.17"
+  resolved "https://registry.yarnpkg.com/@types/google-libphonenumber/-/google-libphonenumber-7.4.17.tgz#26974213353cb459e403a5740812115a596cf170"
+  integrity sha512-NdqFHXBGxwiGjJn7dTAjcCckgxE+LbE3jik6/SNiC9ZfG4BxHJM1X6m8w+/ZpSGRN5s0+4dIL+MaD/KSXywp1g==
+
 "@types/jasmine@*":
   version "3.3.12"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.3.12.tgz#bf282cb540e9ad7a0a04b742082c073b655eab39"
@@ -2899,6 +2904,11 @@ globule@^1.0.0:
     glob "~7.1.1"
     lodash "~4.17.10"
     minimatch "~3.0.2"
+
+google-libphonenumber@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/google-libphonenumber/-/google-libphonenumber-3.2.2.tgz#3d9d7ba727e99a50812f21b0ed313723b76c5c54"
+  integrity sha512-ubjGeosYPeusjYbUHy76lCniGTTI0k1rIFc+uKBX+jHQLDmWOSUtlFUxaeoLJ+Y+PAMM6dWp+C1HjHx5BI8kEw==
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.15"
