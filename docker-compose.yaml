@@ -1,0 +1,7 @@
+version: '3.2'
+
+services:
+  home:
+    build: .
+    environment:
+      NODE_ENV: production
