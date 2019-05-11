@@ -1,6 +1,12 @@
 import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {FormBuilder, Validators} from "@angular/forms";
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import {PhoneNumberValidator} from "./phone-number-validator";
 import {environment} from "../environments/environment";
 import {PhoneNumberFormat, PhoneNumberUtil} from 'google-libphonenumber';
@@ -13,10 +19,8 @@ import {PhoneNumberFormat, PhoneNumberUtil} from 'google-libphonenumber';
 export class AppComponent {
 
   fosterForm = this.fb.group({
-    animals: this.fb.array([this.fb.group({
-      dog: [false],
-      cat: [false],
-    })]),
+    animals: this.fb.array([], AppComponent.minSelectedCheckboxes()),
+    about_home: [''],
     foster_at_home: [false],
     home_with_garden: [false],
     have_car: [false],
@@ -42,6 +46,8 @@ export class AppComponent {
     accept_terms: [false, Validators.requiredTrue],
   });
 
+  animals = this.fosterForm.get('animals');
+  about_home = this.fosterForm.controls['about_home'];
   foster_at_home = this.fosterForm.controls['foster_at_home'];
   home_with_garden = this.fosterForm.controls['home_with_garden'];
   have_car = this.fosterForm.controls['have_car'];
@@ -55,6 +61,8 @@ export class AppComponent {
   address = this.fosterForm.controls['address'];
   email = this.fosterForm.controls['email'];
   phone = this.fosterForm.controls['phone'];
+  call_at_night = this.fosterForm.controls['call_at_night'];
+  comment = this.fosterForm.controls['comment'];
   agree_to_no_time_limit = this.fosterForm.controls['agree_to_no_time_limit'];
   agree_to_no_transfer = this.fosterForm.controls['agree_to_no_transfer'];
   agree_to_pay = this.fosterForm.controls['agree_to_pay'];
@@ -68,10 +76,22 @@ export class AppComponent {
 
   }
 
-  onSubmit() {
+  static minSelectedCheckboxes(): ValidatorFn {
+    return (formArray: FormArray) => {
 
+      const selectedCount = formArray.controls
+        .map(control => control.value)
+        .reduce((prev, next) => next ? prev + 1 : prev, 0);
+
+      return selectedCount >= 1 ? null : {notSelected: true};
+    };
+  }
+
+  onSubmit() {
     if (this.fosterForm.invalid) {
-      this.fosterForm.markAsDirty();
+      for (let control in this.fosterForm.controls) {
+        this.fosterForm.controls[control].markAsTouched();
+      }
       return
     }
 
@@ -80,16 +100,24 @@ export class AppComponent {
     const number = phoneUtil.parseAndKeepRawInput(formValues.phone, 'IL');
     formValues.phone = phoneUtil.format(number, PhoneNumberFormat.E164);
 
-    formValues.animals = ["cat"];
-    formValues.residence = "House_with_yard";
-
-    console.log(formValues);
-
-    this.httpClient.post(environment.api, formValues).subscribe(res => {
-      console.log('yeah!')
+    this.httpClient.post(environment.api, formValues).subscribe(_ => {
     }, err => {
       console.error(err)
     })
+  }
+
+  toggleAnimal(e, animal) {
+    const checked = e.target.checked;
+    const animals: FormArray = <FormArray>this.fosterForm.controls['animals'];
+    if (checked) {
+      animals.push(new FormControl(animal));
+    } else {
+      const at = animals.controls.findIndex(control =>
+        control.value === animal
+      );
+      animals.removeAt(at);
+    }
+    animals.markAsTouched();
   }
 
 }

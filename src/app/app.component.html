@@ -35,8 +35,7 @@
   <hr>
 
   <form id="example-form" action="#" role="form" (ngSubmit)="onSubmit()"
-        [formGroup]="fosterForm"
-        [ngClass]="{'was-validated': fosterForm.dirty}">
+        [formGroup]="fosterForm">
     <div>
 
       <h3>למי אתם מעוניינים לעשות אומנה?</h3>
@@ -47,44 +46,83 @@
                src="http://freepngimages.com/wp-content/uploads/2014/04/dog_and_cat_1_2.png">
         </div>
 
-        <div class="form-group">
-          <!-- dogs -->
+        <div class="form-group" formArrayName="animals">
+          <!-- animals -->
+
           <div class="form-check form-check-inline">
-            <input class="form-check-input" formControlName="foster_puppy"
-                   type="checkbox" id="foster_puppy"
-                   value="foster_puppy">
+            <input
+              [ngClass]="{'is-invalid': animals.invalid && animals.touched, 'is-valid': animals.valid}"
+              (change)="toggleAnimal($event,'puppy')"
+              class="form-check-input"
+              type="checkbox"
+              id="foster_puppy"
+              value="puppy"
+            >
             <label class="form-check-label" for="foster_puppy">גור כלבים</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" formControlName="foster_dog"
-                   type="checkbox" id="foster_dog"
-                   value="foster_dog">
+            <input
+              [ngClass]="{'is-invalid': animals.invalid && animals.touched, 'is-valid': animals.valid}"
+              (change)="toggleAnimal($event,'dog')"
+              class="form-check-input"
+              type="checkbox"
+              id="foster_dog"
+              value="foster_dog"
+            >
             <label class="form-check-label" for="foster_dog">כלב</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" formControlName="foster_senior_dog"
-                   type="checkbox" id="foster_senior_dog"
-                   value="foster_senior_dog">
-            <label class="form-check-label" for="foster_dog">כלב מבוגר</label>
+            <input
+              [ngClass]="{'is-invalid': animals.invalid && animals.touched, 'is-valid': animals.valid}"
+              (change)="toggleAnimal($event,'senior_dog')"
+              class="form-check-input"
+              type="checkbox"
+              id="foster_senior_dog"
+              value="foster_senior_dog"
+            >
+            <label class="form-check-label" for="foster_senior_dog">כלב
+              מבוגר</label>
           </div>
 
           <div class="form-check form-check-inline">
-            <input class="form-check-input" formControlName="foster_kittens" type="checkbox"
-                   id="foster_kittens"
-                   value="cat">
-            <label class="form-check-label" for="foster_kittens">חתלתולים</label>
+            <input
+              [ngClass]="{'is-invalid': animals.invalid && animals.touched, 'is-valid': animals.valid}"
+              (change)="toggleAnimal($event,'kittens')"
+              class="form-check-input"
+              type="checkbox"
+              id="foster_kittens"
+              value="cat"
+            >
+            <label class="form-check-label"
+                   for="foster_kittens">חתלתולים</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" formControlName="foster_cat" type="checkbox"
-                   id="foster_cat"
-                   value="cat">
+            <input
+              [ngClass]="{'is-invalid': animals.invalid && animals.touched, 'is-valid': animals.valid}"
+              (change)="toggleAnimal($event,'cat')"
+              class="form-check-input"
+              type="checkbox"
+              id="foster_cat"
+              value="cat"
+            >
             <label class="form-check-label" for="foster_cat">חתול</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" formControlName="senior_cat" type="checkbox"
-                   id="senior_cat"
-                   value="cat">
+            <input
+              [ngClass]="{'is-invalid': animals.invalid && animals.touched, 'is-valid': animals.valid}"
+              (change)="toggleAnimal($event,'senior_cat')"
+              class="form-check-input"
+              type="checkbox"
+              id="senior_cat"
+              value="cat"
+            >
             <label class="form-check-label" for="senior_cat">חתול מבוגר</label>
+          </div>
+
+          <div class="invalid-feedback"
+               *ngIf="animals.invalid && animals.touched"
+               style="display: block;">
+            נא לבחור לפחות אחד מהרשימה
           </div>
 
         </div>
@@ -99,6 +137,8 @@
         <div class="form-group">
           <label class="control-label" for="textarea">הבית</label>
           <textarea class="form-control" id="textarea" name="textarea"
+                    formControlName="about_home"
+                    [ngClass]="{'is-invalid': about_home.invalid && about_home.touched, 'is-valid': about_home.valid && about_home.touched}"
                     placeholder="אנא פרטו קצת על הבית. האם יש לכם עוד בעלי חיים בבית? כלבים? חתולים? כמה? באיזה גיל? איך הם מתנהגים?"></textarea>
         </div>
 
@@ -113,6 +153,7 @@
               type="checkbox"
               id="foster_at_home"
               formControlName="foster_at_home"
+              [ngClass]="{'is-invalid': foster_at_home.invalid && foster_at_home.touched, 'is-valid': foster_at_home.valid && foster_at_home.touched}"
             >
             <label
               class="form-check-label"
@@ -129,6 +170,7 @@
               type="checkbox"
               id="home_with_garden"
               formControlName="home_with_garden"
+              [ngClass]="{'is-invalid': home_with_garden.invalid && home_with_garden.touched, 'is-valid': home_with_garden.valid && home_with_garden.touched}"
             >
             <label
               class="form-check-label"
@@ -145,6 +187,7 @@
               type="checkbox"
               id="have_car"
               formControlName="have_car"
+              [ngClass]="{'is-invalid': have_car.invalid && have_car.touched, 'is-valid': have_car.valid && have_car.touched}"
             >
             <label
               class="form-check-label"
@@ -161,6 +204,7 @@
               type="checkbox"
               id="can_pay_food"
               formControlName="can_pay_food"
+              [ngClass]="{'is-invalid': can_pay_food.invalid && can_pay_food.touched, 'is-valid': can_pay_food.valid && can_pay_food.touched}"
             >
             <label
               class="form-check-label"
@@ -177,6 +221,7 @@
               type="checkbox"
               id="can_pay_medicine"
               formControlName="can_pay_medicine"
+              [ngClass]="{'is-invalid': can_pay_medicine.invalid && can_pay_medicine.touched, 'is-valid': can_pay_medicine.valid && can_pay_medicine.touched}"
             >
             <label
               class="form-check-label"
@@ -193,6 +238,7 @@
               type="checkbox"
               id="can_handle_sick"
               formControlName="can_handle_sick"
+              [ngClass]="{'is-invalid': can_handle_sick.invalid && can_handle_sick.touched, 'is-valid': can_handle_sick.valid && can_handle_sick.touched}"
             >
             <label
               class="form-check-label"
@@ -209,6 +255,7 @@
               type="checkbox"
               id="can_handle_bad_behaviour"
               formControlName="can_handle_bad_behaviour"
+              [ngClass]="{'is-invalid': can_handle_bad_behaviour.invalid && can_handle_bad_behaviour.touched, 'is-valid': can_handle_bad_behaviour.valid && can_handle_bad_behaviour.touched}"
             >
             <label
               class="form-check-label"
@@ -226,6 +273,7 @@
               type="checkbox"
               id="can_handle_aggressive"
               formControlName="can_handle_aggressive"
+              [ngClass]="{'is-invalid': can_handle_aggressive.invalid && can_handle_aggressive.touched, 'is-valid': can_handle_aggressive.valid && can_handle_aggressive.touched}"
             >
             <label
               class="form-check-label"
@@ -330,7 +378,9 @@
           <div class="form-group">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="call_at_night"
-                     formControlName="call_at_night" value="night">
+                     formControlName="call_at_night" value="night"
+                     [ngClass]="{'is-invalid': call_at_night.invalid && call_at_night.touched, 'is-valid': call_at_night.valid && call_at_night.touched}"
+              >
               <label class="form-check-label" for="call_at_night">אתם יכולים
                 להתקשר אלי אחרי 22:00 אם יש צורך באומנה.</label>
             </div>
@@ -341,6 +391,7 @@
           <label class="control-label" for="comment">מידע נוסף</label>
           <div class="">
             <textarea class="form-control" id="comment" name="comment"
+                      [ngClass]="{'is-invalid': comment.invalid && comment.touched, 'is-valid': comment.valid && comment.touched}"
                       formControlName="comment">אנא שתפו אותנו בכל דבר שאתם חושבים ששווה אזכור</textarea>
           </div>
         </div>
