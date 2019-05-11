@@ -72,6 +72,8 @@ export class AppComponent {
   agree_to_bring = this.fosterForm.controls['agree_to_bring'];
   accept_terms = this.fosterForm.controls['accept_terms'];
 
+  submitted = false;
+
   constructor(private httpClient: HttpClient, private fb: FormBuilder) {
 
   }
@@ -101,6 +103,7 @@ export class AppComponent {
     formValues.phone = phoneUtil.format(number, PhoneNumberFormat.E164);
 
     this.httpClient.post(environment.api, formValues).subscribe(_ => {
+      this.submitted = true
     }, err => {
       console.error(err)
     })

@@ -12,7 +12,7 @@
 
   <hr>
 
-  <div>
+  <div *ngIf="!submitted">
     <p>שלום אנשים טובים,</p>
 
     <p>
@@ -32,10 +32,10 @@
 
   </div>
 
-  <hr>
+  <hr *ngIf="!submitted">
 
   <form id="example-form" action="#" role="form" (ngSubmit)="onSubmit()"
-        [formGroup]="fosterForm">
+        [formGroup]="fosterForm" *ngIf="!submitted">
     <div>
 
       <h3>למי אתם מעוניינים לעשות אומנה?</h3>
@@ -617,6 +617,19 @@
     <button class="btn btn-primary" type="submit">שליחת הטופס</button>
 
   </form>
+
+  <div *ngIf="submitted" class="text-center">
+    <h2>תודה רבה לכם!</h2>
+    <p class="lead">נרשמתם בהצלחה למלאכים לשעת חירום</p>
+    <p>אנו ניצור אתכם קשר במקרה הצורך</p>
+    <p>אם תרצו, אתם מוזמנים להרשם
+      <a href="http://help.dimonalovesanimals.org/subscribe">לרשימת התפוצה שלנו</a>.
+    </p>
+    <p>או למצוא דרכים
+      <a href="http://help.dimonalovesanimals.org">נוספות לעזור</a>.
+    </p>
+  </div>
+
 </div>
 
 <footer></footer>
